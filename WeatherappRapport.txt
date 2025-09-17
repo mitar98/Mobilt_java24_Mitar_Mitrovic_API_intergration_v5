@@ -1,0 +1,16 @@
+RAPPORT
+
+Appen använder OpenWeathers REST-API för att hämta aktuellt väder och 5-dygnsprognos i 3-timmarsintervall. Jag anropar två endpoints: 
+data/2.5/weather?q={city}&units=metric för “nu” och 
+data/2.5/forecast?q={city}&units=metric för prognosen. 
+
+Svaren (JSON) parsas med Retrofit + Moshi till dataklasser (temp, feels_like, vind, luftfuktighet, ikon, tidsstämplar). Ikoner laddas med Glide från openweathermap.org/img/wn/{icon}@2x.png.
+
+Strukturen har fyra fragment: 
+Main visar aktuell temperatur och metadata för vald stad.
+CitySearch låter användaren söka och spara stad.
+ForecastList visar prognosen i en RecyclerView.
+ForecastDetail presenterar vald tidsstegs detaljer. 
+Navigation sker med Android Navigation Component och följer backstack enligt uppgiftsbilden. 
+Dataflödet hanteras av en WeatherVm (LiveData) som triggar refresh() vid stadbyte.
+Designen stödjer både portrait och landscape via separata layouter: i landscape visas nu-väder och kontroller sida vid sida för bättre utnyttjande av bredd. Jag har testat på emulator och säkerställt att listor skalar. 
