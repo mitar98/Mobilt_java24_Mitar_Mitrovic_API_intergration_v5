@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.weathernavapp.ui.MainFragment"
+        android:label="Main">
+        <action
+            android:id="@+id/action_main_to_citySearch"
+            app:destination="@id/citySearchFragment" />
+        <action
+            android:id="@+id/action_main_to_forecastList"
+            app:destination="@id/forecastListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/citySearchFragment"
+        android:name="com.example.weathernavapp.ui.CitySearchFragment"
+        android:label="City Search">
+        <action
+            android:id="@+id/action_citySearch_to_main_popInclusive"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forecastListFragment"
+        android:name="com.example.weathernavapp.ui.ForecastListFragment"
+        android:label="Forecast">
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/forecastDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forecastDetailFragment"
+        android:name="com.example.weathernavapp.ui.ForecastDetailFragment"
+        android:label="Details" />
+</navigation>
